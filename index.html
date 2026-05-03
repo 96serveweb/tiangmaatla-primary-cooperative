@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiangmaatla Primary Cooperative</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefaf2;
+            padding-top: 76px;
+            color: #1e2a1e;
+        }
+        :root {
+            --coop-green: #2b6e2b;
+            --coop-earth: #8b5a2b;
+            --coop-gold: #e6a817;
+            --coop-cream: #fef7e0;
+            --coop-dark: #1a3a1a;
+            --coop-sage: #5c7a5c;
+        }
+        .coop-header-bar {
+            height: 6px;
+            background: linear-gradient(90deg, #2b6e2b 0%, #8b5a2b 25%, #e6a817 50%, #c97e2a 75%, #1a3a1a 100%);
+        }
+        .navbar {
+            background: #0f2a0f;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+        .navbar-brand {
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            font-size: 1.5rem;
+        }
+        .navbar-brand span {
+            color: var(--coop-gold);
+        }
+        .nav-link {
+            font-weight: 500;
+            margin: 0 0.2rem;
+            transition: 0.2s;
+        }
+        .nav-link:hover {
+            color: var(--coop-gold) !important;
+            transform: translateY(-2px);
+        }
+        .hero-coop {
+            background: linear-gradient(rgba(15, 42, 15, 0.705), rgba(26, 58, 26, 0.486)), url('assets/images/cover-img.jpg');
+            background-size: cover;
+            background-position: center 35%;
+            padding: 90px 0 100px;
+        }
+        .hero-badge {
+            background: rgba(230,168,23,0.2);
+            backdrop-filter: blur(4px);
+            display: inline-block;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #e6a817;
+            margin-bottom: 1rem;
+        }
+        .btn-coop {
+            background: var(--coop-green);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+        }
+        .btn-coop:hover {
+            background: var(--coop-dark);
+            transform: translateY(-3px);
+            color: white;
+        }
+        .btn-outline-coop {
+            border: 2px solid var(--coop-gold);
+            background: transparent;
+            color: var(--coop-gold);
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+        .btn-outline-coop:hover {
+            background: var(--coop-gold);
+            color: #1e3a1e;
+        }
+        .section-title {
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--coop-gold);
+            border-radius: 4px;
+        }
+        .coop-card {
+            border: none;
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.3s;
+            height: 100%;
+            background: white;
+        }
+        .coop-card:hover {
+            transform: translateY(-6px);
+        }
+        .coop-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(43,110,43,0.1);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+        .coop-icon i {
+            font-size: 2rem;
+            color: var(--coop-green);
+        }
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--coop-green);
+            line-height: 1;
+        }
+        .gallery-img {
+            border-radius: 24px;
+            transition: 0.4s;
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .gallery-img:hover {
+            transform: scale(1.02);
+        }
+        .testimonial-card {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem;
+        }
+        .footer-coop {
+            background: #0f2a0f;
+            color: #e2e8e0;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1040;
+        }
+        .whatsapp-float i {
+            font-size: 32px;
+            color: white;
+        }
+        .progress {
+            height: 12px;
+            border-radius: 20px;
+            background-color: #e9e4d8;
+        }
+        .progress-bar-coop {
+            background-color: var(--coop-green);
+        }
+        @media (max-width: 768px) {
+            body { padding-top: 68px; }
+            .stat-number { font-size: 2rem; }
+            .hero-coop { padding: 60px 0; }
+        }
+        .contact-info i {
+            width: 32px;
+            color: var(--coop-gold);
+        }
+        .list-leaf li {
+            margin-bottom: 0.6rem;
+        }
+        .list-leaf li i {
+            color: var(--coop-green);
+            margin-right: 10px;
+        }
+        .navbar-brand img{
+            height: 34px;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="coop-header-bar"></div>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="assets/images/logo.png" alt="Tiangmaatla Logo" class="me-2" style="height:32px;">
+            Tiangmaatla<span style="color:#e6a817;">&nbsp; Co-op</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#coopNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="coopNavbar">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#production">Production</a></li>
+                <li class="nav-item"><a class="nav-link" href="#impact">Impact</a></li>
+                <li class="nav-item"><a class="nav-link" href="#opportunities">Opportunities</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<a href="https://wa.me/27739538642" class="whatsapp-float" target="_blank" style="text-decoration: none;">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<section id="home" class="hero-coop">
+    <div class="container text-center text-white">
+        <div hidden class="hero-badge"><i class="fas fa-leaf me-2"></i> Reg. Co-operative Act No.14 of 2005</div>
+        <h1 class="display-4 fw-bold mb-3">Tiangmaatla Primary Cooperative Limited</h1>
+        <p class="lead mb-4" style="max-width: 750px; margin: 0 auto;">Crop & poultry production • Poverty alleviation • Food security for Sebayeng’s vulnerable children & families.</p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+            <a href="#opportunities" class="btn btn-coop"><i class="fas fa-seedling me-2"></i>Join Our Cooperative</a>
+            <a href="#contact" class="btn btn-outline-coop"><i class="fas fa-handshake me-2"></i>Partner With Us</a>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row text-center g-4">
+            <div class="col-md-3 col-6">
+                <div class="stat-number">85</div>
+                <p class="text-muted mb-0">Vulnerable households supported</p>
+                <small class="text-success">204 orphans & children</small>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-number">14+</div>
+                <p class="text-muted mb-0">Hectares under cultivation</p>
+                <small class="text-success">Madiga & Leruleng farms</small>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-number">5000</div>
+                <p class="text-muted mb-0">Broilers & Layers</p>
+                <small class="text-success">Eggs + meat production</small>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-number">3500+</div>
+                <p class="text-muted mb-0">Cabbages harvested (2023)</p>
+                <small class="text-success">+ tomatoes, beetroot, spinach</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="py-5" style="background: #fef7e0;">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="text-uppercase text-muted small fw-bold"><i class="fas fa-globe-africa me-1"></i> Established 2018 • Re-registered 2021</span>
+                <h2 class="section-title mt-2">From small garden to commercial farming cooperative</h2>
+                <p class="mt-4">Tiangmaatla Primary Cooperative Limited was founded by community member Melida Matsi, emerging from the Tiangmaatla Multipurpose Centre’s door-to-door campaigns that revealed severe poverty and food insecurity in Sebayeng village, Limpopo. We are registered under the Cooperative Act, supplying maize, cabbage, onions, tomatoes, beetroot, carrots, potatoes, and poultry (broilers & layers).</p>
+                <p class="mt-2">Our mission: <strong>participate within mainstream commercial markets, derive meaningful benefits as a symbol of empowerment and transformation.</strong> We currently support 85 vulnerable households and 204 orphans/children with daily food and services.</p>
+                <div class="mt-4 d-flex flex-wrap gap-3">
+                    <div><i class="fas fa-check-circle text-success me-2"></i> 14 hectares Leruleng (owned PTO)</div>
+                    <div><i class="fas fa-check-circle text-success me-2"></i> 4 hectares Madiga (leased)</div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="/assets/images/img2.jpg" alt="Tiangmaatla vegetable fields" class="img-fluid rounded-4 shadow-lg" style="max-height: 450px; width: 100%; object-fit: cover;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="production" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Our Agricultural Production</h2>
+            <p class="lead text-muted">Mixed farming: crops, broilers, layers & organic practices</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="coop-card p-4">
+                    <div class="coop-icon"><i class="fas fa-carrot"></i></div>
+                    <h4>Crop Production</h4>
+                    <p>Maize (150,000 roundup ready), cabbage, onions, carrots, beetroot, tomatoes, spinach & potatoes. Using natural herbs for pest control and chicken dropping for organic fertilizer.</p>
+                    <span class="badge bg-success mt-2">Dryland + irrigation planned</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="coop-card p-4">
+                    <div class="coop-icon"><i class="fas fa-drumstick-bite"></i></div>
+                    <h4>Poultry (Broilers & Layers)</h4>
+                    <p>2000 broilers + 3000 point-of-lay hens. Egg production: ~1200 eggs/day (approx. 20 dozen daily). Hatchery unit, battery cages, deep litter system, solar backup.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="coop-card p-4">
+                    <div class="coop-icon"><i class="fas fa-seedling"></i></div>
+                    <h4>Organic & Sustainable</h4>
+                    <p>Recycling poultry waste as fertilizer, moisture-conserving mulch, natural herbs for insect control, and plans for greenhouse with 10,000 seedling capacity.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-title">Proven Harvests & Milestones</h2>
+                <p>2022–2024: Real impact from our fields</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="coop-card p-0">
+                    <img src="assets/images/img-3.jpg" class="w-100" style="height: 200px; object-fit: cover;">
+                    <div class="p-3">
+                        <h5>Maize harvest 2023</h5>
+                        <p>165 x 50kg bags sent to Progress Milling. Ploughed 4 hectares under dryland.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="coop-card p-0">
+                    <img src="assets/images/img-5.jpg" class="w-100" style="height: 200px; object-fit: cover;">
+                    <div class="p-3">
+                        <h5>Vegetable success</h5>
+                        <p>3,500 cabbages, 2,000 beetroots, and continuous spinach supply to local community.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="coop-card p-0">
+                    <img src="assets/images/img-4.jpg" class="w-100" style="height: 200px; object-fit: cover;">
+                    <div class="p-3">
+                        <h5>Poultry expansion</h5>
+                        <p>Target: 5,000 chickens (layers & broilers) – eggs supply to schools, bakeries & retail.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="impact" class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 order-lg-2">
+                <h2 class="section-title">Beyond Farming: Uplifting Sebayeng</h2>
+                <p class="lead">Our cooperative directly supports the Tiangmaatla Multipurpose Centre's drop-in services for orphans and vulnerable children affected by HIV/AIDS and poverty.</p>
+                <ul class="list-unstyled list-leaf mt-4">
+                    <li> Daily meals for 204 vulnerable children</li>
+                    <li> Skills training in poultry & crop farming</li>
+                    <li> Door-to-door poverty alleviation campaigns</li>
+                    <li> Local market supply: hawkers, spaza shops, schools</li>
+                </ul>
+                <div class="mt-4 p-3 bg-light rounded-4">
+                    <i class="fas fa-quote-left me-2 text-success"></i> “We identified poverty levels stressing Sebayeng — farming is the solution.” – Mrs. Matsi M.M, Director
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <img src="assets/images/img-7.jpg" alt="Community farming support" class="img-fluid rounded-4 shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="opportunities" class="py-5" style="background: #f3f4ec;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <h2 class="section-title">Employment & Skills Development</h2>
+                <p>Tiangmaatla Primary Cooperative is committed to creating sustainable jobs and training opportunities for Sebayeng youth and women.</p>
+                <div class="mb-4 mt-4">
+                    <div class="d-flex justify-content-between"><span> Production workers (plant & poultry)</span><span>Phase 1: 4 workers + supervisors</span></div>
+                    <div class="progress mb-3"><div class="progress-bar progress-bar-coop" style="width:70%"></div></div>
+                    <div class="d-flex justify-content-between"><span> Administration & driver roles</span><span>Recruiting now</span></div>
+                    <div class="progress mb-3"><div class="progress-bar progress-bar-coop" style="width:40%"></div></div>
+                    <div class="d-flex justify-content-between"><span> Veterinary & food technician training</span><span>Partner with UL & Dept of Agriculture</span></div>
+                    <div class="progress mb-3"><div class="progress-bar progress-bar-coop" style="width:55%"></div></div>
+                </div>
+                <div class="alert alert-success bg-white border-0 shadow-sm rounded-4">
+                    <i class="fas fa-graduation-cap me-2"></i> <strong>Training programs:</strong> plant production, poultry care, disease control, vaccination, egg collection, harvesting, and HACCP food safety.
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="coop-card p-4">
+                    <h4><i class="fas fa-users me-2 text-success"></i> Open opportunities</h4>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Farm workers (crops & layers)</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Driver / delivery assistant</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Admin clerk (record management)</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Security & maintenance</li>
+                    </ul>
+                    <hr>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> Apply at Sebayeng office (adjacent to clinic)</p>
+                    <a href="#contact" class="btn btn-coop w-100 mt-2">Submit CV / Expression of Interest</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container text-center">
+        <h3 class="fw-bold mb-4">Strategic Partners & Supporters</h3>
+        <div class="row g-3 justify-content-center">
+            <div class="col-auto"><span class="badge bg-light text-dark p-3">LEDA</span></div>
+            <div class="col-auto"><span class="badge bg-light text-dark p-3">Dept of Agriculture & Rural Dev</span></div>
+            <div class="col-auto"><span class="badge bg-light text-dark p-3">University of Limpopo (ULRDIH)</span></div>
+            <div class="col-auto"><span class="badge bg-light text-dark p-3">National Development Agency (NDA)</span></div>
+            <div class="col-auto"><span class="badge bg-light text-dark p-3">Polokwane Coop Farmers Forum</span></div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-5">
+                <h2 class="section-title">Visit our cooperative</h2>
+                <div class="contact-info mt-4">
+                    <p><i class="fas fa-map-marker-alt me-3"></i> Stand No. 102 Leruleng Sebayeng Village</p>
+                    <p><i class="fas fa-tractor me-3"></i> Capricorn District Polokwane Municipality</p>
+                    <p><i class="fas fa-phone-alt me-3"></i> 073 953 8642</p>
+                    <p><i class="fas fa-envelope me-3"></i> tiangmaatlacooperative@gmail.com</p>
+                    <p><i class="fas fa-clock me-3"></i> Mon–Thu 8:00–16:00, Fri 8:00–13:00</p>
+                </div>
+                <div class="mt-4">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.406450609424!2d29.6999190756572!3d-23.768536569236783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ec6c1224383af69%3A0xe1a9d193fe2071d7!2sTIANGMAATLA%20MULTIPURPOSE%20CENTER!5e0!3m2!1sen!2sza!4v1712345678901!5m2!1sen!2sza" width="100%" height="200" style="border:0; border-radius: 20px;" allowfullscreen=""></iframe>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="coop-card p-4">
+                    <h4> Work with us / Supplier enquiry</h4>
+                    <form id="coopContactForm">
+                        <div class="row g-3">
+                            <div class="col-md-6"><label class="form-label">Full name *</label><input type="text" class="form-control" id="coopName" required></div>
+                            <div class="col-md-6"><label class="form-label">Email *</label><input type="email" class="form-control" id="coopEmail" required></div>
+                            <div class="col-md-6"><label class="form-label">Phone *</label><input type="tel" class="form-control" id="coopPhone" required></div>
+                            <div class="col-md-6"><label class="form-label">Interest</label><select class="form-select" id="coopInterest"><option>Employment / CV submission</option><option>Training programme</option><option>Partnership / Supplier</option><option>Market enquiry (eggs/vegetables/maize)</option></select></div>
+                            <div class="col-12"><label class="form-label">Message / Details *</label><textarea class="form-control" rows="4" id="coopMsg" placeholder="Tell us about your skills, collaboration, or purchase inquiry..." required></textarea></div>
+                            <div class="col-12"><button type="submit" class="btn btn-coop w-100"><i class="fas fa-paper-plane me-2"></i>Send message to Tiangmaatla Co-op</button></div>
+                        </div>
+                    </form>
+                    <div id="coopFormSuccess" class="alert alert-success mt-4" style="display: none;"><i class="fas fa-check-circle me-2"></i> Thank you! Our cooperative management will respond within 48 hours.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer-coop pt-5 pb-4">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-md-4">
+                <h5><i class="fas fa-leaf me-2"></i>Tiangmaatla Primary Co-op</h5>
+                <p>Reg. under Co-operatives Act No.14 of 2005 • CIPC, SARS, CSD registered.</p>
+                <small>© 2026 Tiangmaatla Primary Cooperative Limited — Empowering Sebayeng through sustainable agriculture.</small>
+            </div>
+            <div class="col-md-4">
+                <h5>Quick navigation</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#home" class="text-light text-decoration-none">Home</a></li>
+                    <li><a href="#about" class="text-light text-decoration-none">About / Background</a></li>
+                    <li><a href="#production" class="text-light text-decoration-none">Crops & Poultry</a></li>
+                    <li><a href="#opportunities" class="text-light text-decoration-none">Jobs & Training</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Connect with us</h5>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-light fs-5"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-light fs-5"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="text-light fs-5"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p class="mt-3"><i class="fas fa-trophy me-1"></i> Member: Polokwane Cooperates Farmers Forum</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = this.getAttribute('href');
+            if(target === "#") return;
+            const elem = document.querySelector(target);
+            if(elem){
+                e.preventDefault();
+                elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    const contactForm = document.getElementById('coopContactForm');
+    const successDiv = document.getElementById('coopFormSuccess');
+    if(contactForm){
+        contactForm.addEventListener('submit', function(e){
+            e.preventDefault();
+            const name = document.getElementById('coopName').value;
+            const email = document.getElementById('coopEmail').value;
+            const phone = document.getElementById('coopPhone').value;
+            const interest = document.getElementById('coopInterest').value;
+            const msg = document.getElementById('coopMsg').value;
+            if(!name || !email || !msg){
+                alert("Please fill required fields");
+                return;
+            }
+            const body = `TIANGMAATLA PRIMARY COOPERATIVE ENQUIRY\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nInterest: ${interest}\nMessage: ${msg}\n\nSubmitted via cooperative website.`;
+            window.location.href = `mailto:tiangmaatlacooperative@gmail.com?subject=Cooperative enquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(body)}`;
+            successDiv.style.display = 'block';
+            contactForm.reset();
+            setTimeout(() => successDiv.style.display = 'none', 5000);
+        });
+    }
+    const fadeEls = document.querySelectorAll('.coop-card, .testimonial-card, .gallery-img');
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(15px)';
+        el.style.transition = 'all 0.5s ease';
+        obs.observe(el);
+    });
+</script>
+</body>
+</html>
